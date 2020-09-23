@@ -50,4 +50,28 @@ Relocate to the beginning and not do anything else
 ```{r}
 relocate(litters_df, litter_number)
 ```
+## Filter
+
+Filter operates on ROWS 
+
+```{r}
+filter(litters_df, gd0_weight <22)
+```
+
+Make it equal to 22
+```{r}
+filter(litters_df, gd0_weight ==22)
+```
+
+Make it everything except when it equals 22
+
+```{r}
+filter(litters_df, !(gd0_weight == 22))
+```
+
+Filter and select multiple character rows 
+
+```{r}
+filter(litters_df, group %in% c("Con7", "Mod8"))
+```
 
