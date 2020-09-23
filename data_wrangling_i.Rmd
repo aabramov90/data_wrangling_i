@@ -1,0 +1,12 @@
+---
+title: "Data Wrangling Lecture"
+output: github_document
+---
+
+# Setup
+
+```{r, setup}
+library(tidyverse)
+```
+
+# Section 2
