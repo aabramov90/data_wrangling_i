@@ -296,3 +296,26 @@ arrange(litters_df, pups_born_alive)
     ## 10 Con7  #4/2/95/3-3         NA          NA            20               6
     ## # … with 39 more rows, and 2 more variables: pups_dead_birth <dbl>,
     ## #   pups_survive <dbl>
+
+## %\>%
+
+``` r
+litters_df = 
+  read_csv("./data/FAS_litters.csv") %>% 
+  janitor::clean_names() %>% 
+  select(-pups_survive) %>% 
+  mutate(wt_gain = gd18_weight - gd0_weight) %>% 
+  drop_na(gd0_weight)
+```
+
+    ## Parsed with column specification:
+    ## cols(
+    ##   Group = col_character(),
+    ##   `Litter Number` = col_character(),
+    ##   `GD0 weight` = col_double(),
+    ##   `GD18 weight` = col_double(),
+    ##   `GD of Birth` = col_double(),
+    ##   `Pups born alive` = col_double(),
+    ##   `Pups dead @ birth` = col_double(),
+    ##   `Pups survive` = col_double()
+    ## )
