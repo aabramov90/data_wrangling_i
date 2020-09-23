@@ -1,5 +1,5 @@
 ---
-title: "Data Import"
+title: "Data Manipulation"
 output: github_document
 ---
 
@@ -7,57 +7,47 @@ output: github_document
 
 ```{r, setup}
 library(tidyverse)
-library(readxl)
-library(haven)
 ```
 
-## Read in some data
+## Load in FAS_Litters dataframe
 
-Read in the litters dataset.
 ```{r}
-litters_df = read_csv("./data/FAS_litters.csv")
+litters_df = read_csv(file = "./data/FAS_litters.csv")
 litters_df = janitor::clean_names(litters_df)
 ```
 
-## Take a look at the data
+## select
 
-Printing in the console
-
-```{r}
-litters_df
-```
+Choose some columns and not others.
 
 ```{r}
-skimr::skim(litters_df)
+select(litters_df, group, litter_number, gd0_weight:gd_of_birth)
 ```
 
-## Options to read_csv
+If we want to remove a variable.
 ```{r}
-litters_df = read_csv("./data/FAS_litters.csv", skip = 10, col_names = FALSE)
+select(litters_df, -group)
 ```
 
-## Other file formats
-
-Read in an excel file
-
+Rename a column and select it
 ```{r}
-mlb_df = read_excel("./data/mlb11.xlsx")
-mlb_df = read_excel("data/mlb11.xlsx", range = "A1:F7")
-mlb_df
+select(litters_df, GROUP = group)
 ```
 
-Read in a SAS file
-```{r}
-pulse_df = read_sas("./data/public_pulse_data.sas7bdat")
-```
-
-## Exporting data
-
-Export the mlb dataset.
+Just rename a column.
 
 ```{r}
-mlb_df
-write_csv(mlb_df, "./data/mlb_subtable.csv")
+rename(litters_df, GROUP = group)
 ```
 
+Select helpers
+
+```{r}
+select(litters_df, starts_with("gd"))
+```
+
+Relocate to the beginning and not do anything else
+```{r}
+relocate(litters_df, litter_number)
+```
 
